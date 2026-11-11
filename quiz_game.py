@@ -1,4 +1,6 @@
+from default_quizzes import create_default_quizzes
 from input_utils import read_int
+from quiz import Quiz
 
 
 class QuizGame:
@@ -6,6 +8,9 @@ class QuizGame:
 
     def __init__(self):
         self.running = True
+        self.quizzes = create_default_quizzes()
+        self.best_score = None  # 최고 점수(정답 수)
+        self.best_total = 0     # 최고 점수를 낸 판의 문제 수
 
     def show_menu(self):
         print("=" * 40)
@@ -18,12 +23,45 @@ class QuizGame:
         print("5. 종료")
         print("=" * 40)
 
+    def play_quiz(self):
+        """저장된 퀴즈를 모두 출제하고 결과를 보여준다."""
+        if not self.quizzes:
+            print("⚠️ 등록된 퀴즈가 없습니다. 먼저 퀴즈를 추가하세요.
+")
+            return
+        total = len(self.quizzes)
+        print(f"
+📝 퀴즈를 시작합니다! (총 {total}문제)
+")
+        correct = 0
+        for number, quiz in enumerate(self.quizzes, start=1):
+            print("-" * 40)
+            quiz.display(number)
+            answer = read_int("정답 입력: ", 1, Quiz.CHOICE_COUNT)
+            if quiz.is_correct(answer):
+                print("✅ 정답입니다!
+")
+                correct += 1
+            else:
+                print(f"❌ 오답입니다. 정답은 {quiz.answer}번입니다.
+")
+        self.show_result(correct, total)
+
+    def show_result(self, correct, total):
+        score = round(correct / total * 100)
+        print("=" * 40)
+        print(f"🏆 결과: {total}문제 중 {correct}문제 정답! ({score}점)")
+        print("=" * 40 + "
+")
+
     def run(self):
         try:
             while self.running:
                 self.show_menu()
                 choice = read_int("선택: ", 1, 5)
-                if choice == 5:
+                if choice == 1:
+                    self.play_quiz()
+                elif choice == 5:
                     print("👋 게임을 종료합니다.")
                     self.running = False
                 else:
