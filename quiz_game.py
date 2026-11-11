@@ -26,33 +26,27 @@ class QuizGame:
     def play_quiz(self):
         """저장된 퀴즈를 모두 출제하고 결과를 보여준다."""
         if not self.quizzes:
-            print("⚠️ 등록된 퀴즈가 없습니다. 먼저 퀴즈를 추가하세요.
-")
+            print("⚠️ 등록된 퀴즈가 없습니다. 먼저 퀴즈를 추가하세요.\n")
             return
         total = len(self.quizzes)
-        print(f"
-📝 퀴즈를 시작합니다! (총 {total}문제)
-")
+        print(f"\n📝 퀴즈를 시작합니다! (총 {total}문제)\n")
         correct = 0
         for number, quiz in enumerate(self.quizzes, start=1):
             print("-" * 40)
             quiz.display(number)
             answer = read_int("정답 입력: ", 1, Quiz.CHOICE_COUNT)
             if quiz.is_correct(answer):
-                print("✅ 정답입니다!
-")
+                print("✅ 정답입니다!\n")
                 correct += 1
             else:
-                print(f"❌ 오답입니다. 정답은 {quiz.answer}번입니다.
-")
+                print(f"❌ 오답입니다. 정답은 {quiz.answer}번입니다.\n")
         self.show_result(correct, total)
 
     def show_result(self, correct, total):
         score = round(correct / total * 100)
         print("=" * 40)
         print(f"🏆 결과: {total}문제 중 {correct}문제 정답! ({score}점)")
-        print("=" * 40 + "
-")
+        print("=" * 40 + "\n")
 
     def run(self):
         try:
