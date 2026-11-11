@@ -1,5 +1,5 @@
 from default_quizzes import create_default_quizzes
-from input_utils import read_int
+from input_utils import read_int, read_text
 from quiz import Quiz
 
 
@@ -42,6 +42,15 @@ class QuizGame:
                 print(f"❌ 오답입니다. 정답은 {quiz.answer}번입니다.\n")
         self.show_result(correct, total)
 
+    def add_quiz(self):
+        """사용자에게 문제/선택지 4개/정답 번호를 입력받아 퀴즈를 추가한다."""
+        print("\n📌 새로운 퀴즈를 추가합니다.\n")
+        question = read_text("문제를 입력하세요: ")
+        choices = [read_text(f"선택지 {i}: ") for i in range(1, Quiz.CHOICE_COUNT + 1)]
+        answer = read_int(f"정답 번호 (1-{Quiz.CHOICE_COUNT}): ", 1, Quiz.CHOICE_COUNT)
+        self.quizzes.append(Quiz(question, choices, answer))
+        print("\n✅ 퀴즈가 추가되었습니다!\n")
+
     def show_result(self, correct, total):
         score = round(correct / total * 100)
         print("=" * 40)
@@ -55,6 +64,8 @@ class QuizGame:
                 choice = read_int("선택: ", 1, 5)
                 if choice == 1:
                     self.play_quiz()
+                elif choice == 2:
+                    self.add_quiz()
                 elif choice == 5:
                     print("👋 게임을 종료합니다.")
                     self.running = False
