@@ -67,6 +67,12 @@ quiz-game/
 ```
 
 ## 실행 화면
-스크린샷은 `docs/screenshots/` (`menu.png`, `play.png`, `add_quiz.png`, `score.png`)에 추가합니다.
+| 메뉴 | 퀴즈 풀기 |
+|------|-----------|
+| ![menu](docs/screenshots/menu.png) | ![play](docs/screenshots/play.png) |
 
-> clone 한 저장소에서 추가한 한 줄 (clone/pull 실습)
+| 퀴즈 추가 | 점수 확인 |
+|-----------|-----------|
+| ![add_quiz](docs/screenshots/add_quiz.png) | ![score](docs/screenshots/score.png) |
+
+> 이미지는 `docs/screenshots/` 폴더에 위 파일명으로 저장하면 표시됩니다.
