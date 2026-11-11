@@ -71,10 +71,10 @@ quiz-game/
 |------|-----------|
 | ![menu](docs/screenshots/menu.png) | ![play](docs/screenshots/play.png) |
 
+| 퀴즈 풀기 결과 | 퀴즈 목록 |
+|----------------|-----------|
+| ![play_result](docs/screenshots/play_result.png) | ![list](docs/screenshots/list.png) |
+
 | 퀴즈 추가 | 점수 확인 |
 |-----------|-----------|
 | ![add_quiz](docs/screenshots/add_quiz.png) | ![score](docs/screenshots/score.png) |
-
-> 이미지는 `docs/screenshots/` 폴더에 위 파일명으로 저장하면 표시됩니다.
-
-> GitHub clone 저장소에서 추가한 한 줄 (clone/pull 실습)
