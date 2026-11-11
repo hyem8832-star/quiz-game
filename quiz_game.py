@@ -62,10 +62,34 @@ class QuizGame:
             print(f"[{i}] {quiz.question}")
         print("-" * 40 + "\n")
 
+    @staticmethod
+    def calc_score(correct, total):
+        """정답 수를 100점 만점 점수로 환산한다."""
+        return round(correct / total * 100) if total else 0
+
+    def update_best_score(self, correct, total):
+        """기존 최고 점수보다 높으면 갱신하고 True 를 반환한다."""
+        if self.best_score is None or \
+                self.calc_score(correct, total) > self.calc_score(self.best_score, self.best_total):
+            self.best_score = correct
+            self.best_total = total
+            return True
+        return False
+
+    def show_best_score(self):
+        if self.best_score is None:
+            print("⚠️ 아직 퀴즈를 푼 기록이 없습니다.\n")
+            return
+        score = self.calc_score(self.best_score, self.best_total)
+        print(f"\n🏆 최고 점수: {score}점 ({self.best_total}문제 중 {self.best_score}문제 정답)\n")
+
     def show_result(self, correct, total):
-        score = round(correct / total * 100)
+        score = self.calc_score(correct, total)
+        is_new_best = self.update_best_score(correct, total)
         print("=" * 40)
         print(f"🏆 결과: {total}문제 중 {correct}문제 정답! ({score}점)")
+        if is_new_best:
+            print("🎉 새로운 최고 점수입니다!")
         print("=" * 40 + "\n")
 
     def run(self):
@@ -79,6 +103,8 @@ class QuizGame:
                     self.add_quiz()
                 elif choice == 3:
                     self.list_quizzes()
+                elif choice == 4:
+                    self.show_best_score()
                 elif choice == 5:
                     print("👋 게임을 종료합니다.")
                     self.running = False
