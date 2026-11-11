@@ -68,3 +68,5 @@ quiz-game/
 
 ## 실행 화면
 스크린샷은 `docs/screenshots/` (`menu.png`, `play.png`, `add_quiz.png`, `score.png`)에 추가합니다.
+
+> clone 한 저장소에서 추가한 한 줄 (clone/pull 실습)
