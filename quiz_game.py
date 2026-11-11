@@ -150,26 +150,29 @@ class QuizGame:
         if is_new_best:
             self.save_state()
 
+    def quit(self):
+        self.save_state()
+        print("👋 게임을 종료합니다.")
+        self.running = False
+
+    def handle_menu(self, choice):
+        """메뉴 번호에 해당하는 기능을 실행한다."""
+        actions = {
+            1: self.play_quiz,
+            2: self.add_quiz,
+            3: self.list_quizzes,
+            4: self.show_best_score,
+            5: self.quit,
+        }
+        actions[choice]()
+
     def run(self):
         print(self.load_message + "\n")
         try:
             while self.running:
                 self.show_menu()
                 choice = read_int("선택: ", 1, 5)
-                if choice == 1:
-                    self.play_quiz()
-                elif choice == 2:
-                    self.add_quiz()
-                elif choice == 3:
-                    self.list_quizzes()
-                elif choice == 4:
-                    self.show_best_score()
-                elif choice == 5:
-                    self.save_state()
-                    print("👋 게임을 종료합니다.")
-                    self.running = False
-                else:
-                    print("🚧 아직 구현되지 않은 기능입니다.\n")
+                self.handle_menu(choice)
         except (KeyboardInterrupt, EOFError):
             print("\n\n⚠️ 입력이 중단되었습니다. 저장 후 안전하게 종료합니다.")
             self.save_state()
