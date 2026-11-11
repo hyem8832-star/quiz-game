@@ -76,3 +76,5 @@ quiz-game/
 | ![add_quiz](docs/screenshots/add_quiz.png) | ![score](docs/screenshots/score.png) |
 
 > 이미지는 `docs/screenshots/` 폴더에 위 파일명으로 저장하면 표시됩니다.
+
+> GitHub clone 저장소에서 추가한 한 줄 (clone/pull 실습)
